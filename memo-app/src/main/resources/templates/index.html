@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>Ajax Memo Application</title>
+<script src="/js/jquery-3.3.1.js"></script>
+<script src="/js/memo.js"></script>
+</head>
+<body>
+	<form th:action="@{/memos}" method="POST">
+		<input type="text" name="text" /> <input type="submit" name="SEND" />
+	</form>
+	<ul>
+		<li th:each="memo: ${memos}" th:text="${memo.text}"></li>
+	</ul>
+	<script>
+		$('form').on('submit', function(e) {
+			e.preventDefault();
+			postComment($('input[type=text]').val())
+		});
+	</script>
+</body>
+</html>
